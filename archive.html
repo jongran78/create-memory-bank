@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Archive — Memory Bank</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #111;
+  color: #e8e6e1;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 6%;
+  border-bottom: 1px solid #333;
+}
+
+.logo {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+a {
+  color: #999;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 75px 7%;
+}
+
+.label {
+  color: #777;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+}
+
+h1 {
+  font-size: clamp(55px, 9vw, 105px);
+  font-weight: normal;
+  margin: 25px 0 15px;
+  letter-spacing: -3px;
+}
+
+.intro {
+  max-width: 570px;
+  color: #aaa;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.archive-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  margin: 65px 0 30px;
+  padding: 18px 0;
+  color: #888;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.memories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px 35px;
+}
+
+.memory {
+  border-bottom: 1px solid #333;
+  padding-bottom: 30px;
+}
+
+.memory-number {
+  color: #777;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.memory h2 {
+  font-size: 29px;
+  font-weight: normal;
+  margin: 18px 0;
+}
+
+.memory p {
+  color: #aaa;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+  color: #777;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.sample-note {
+  color: #777;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-top: 55px;
+  line-height: 1.8;
+}
+
+footer {
+  border-top: 1px solid #333;
+  padding: 30px 6%;
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 650px) {
+  header {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .memories {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-info, footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" href="index.html">MEMORY BANK</a>
+
+  <nav>
+    <a href="archive.html">ARCHIVE</a>
+    <a href="index.html">CONNECTIONS</a>
+    <a href="index.html">CENSUS</a>
+    <a href="index.html">ABOUT</a>
+  </nav>
+</header>
+
+<main>
+
+  <div class="label">A RECORD OF WHAT REMAINS</div>
+
+  <h1>The Archive</h1>
+
+  <div class="intro">
+    Every memory is a fragment of something that once existed.
+    Some are vivid. Others are incomplete.
+    Some belong to places that no longer exist,
+    or people we can no longer reach.
+
+    <br><br>
+
+    These are traces of lives, collected in one place.
+  </div>
+
+  <div class="archive-info">
+    <span>MEMORY COLLECTION</span>
+    <span>EXPLORING THE FRAGMENTS</span>
+  </div>
+
+  <section class="memories">
+
+    <article class="memory">
+      <div class="memory-number">MEMORY / 0001</div>
+      <h2>The Smell of Rain</h2>
+      <p>
+        I remember sitting on the front porch during
+        summer storms. The pavement would get dark,
+        and the air smelled different. I don't remember
+        the house very clearly anymore, but I remember
+        that smell.
+      </p>
+      <div class="metadata">
+        <span>Childhood</span>
+        <span>Summer</span>
+        <span>Sense of Smell</span>
+      </div>
+    </article>
+
+    <article class="memory">
+      <div class="memory-number">MEMORY / 0002</div>
+      <h2>A Place That Disappeared</h2>
+      <p>
+        There was a little restaurant where my family
+        used to eat. I can picture the windows and
+        remember the sound of dishes, but I cannot
+        remember its name. The building is gone now.
+      </p>
+      <div class="metadata">
+        <span>Family</span>
+        <span>Place</span>
+        <span>Disappearance</span>
+      </div>
+    </article>
+
+    <article class="memory">
+      <div class="memory-number">MEMORY / 0003</div>
+      <h2>The Bicycle</h2>
+      <p>
+        I remember learning to ride a bicycle.
+        I remember the feeling of falling, then
+        suddenly realizing nobody was holding on.
+        I don't remember who was there.
+      </p>
+      <div class="metadata">
+        <span>Childhood</span>
+        <span>Object</span>
+        <span>Movement</span>
+      </div>
+    </article>
+
+    <article class="memory">
+      <div class="memory-number">MEMORY / 0004</div>
+      <h2>A Voice I Almost Remember</h2>
+      <p>
+        I can remember the sound of someone's voice,
+        but not the exact words. Sometimes I think
+        I can hear it clearly. Other times I wonder
+        if I have changed it in my memory.
+      </p>
+      <div class="metadata">
+        <span>Person</span>
+        <span>Sound</span>
+        <span>Uncertainty</span>
+      </div>
+    </article>
+
+  </section>
+
+  <div class="sample-note">
+    THESE ARE ILLUSTRATIVE SAMPLE MEMORIES, NOT REAL CONTRIBUTIONS.
+    <br>
+    THE ARCHIVE IS STILL BEING BUILT.
+  </div>
+
+</main>
+
+<footer>
+  <div>MEMORY BANK © 2026</div>
+  <div>A COLLECTION OF WHAT REMAINS</div>
+</footer>
+
+</body>
+</html>
