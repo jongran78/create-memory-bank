@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Bank</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #111111;
+  color: #e8e6e1;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 6%;
+  border-bottom: 1px solid #333;
+  align-items: center;
+}
+
+.logo {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+nav a {
+  color: #999;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
+}
+
+main {
+  padding: 100px 8% 80px;
+}
+
+.label {
+  color: #777;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+}
+
+h1 {
+  font-size: clamp(60px, 12vw, 150px);
+  font-weight: normal;
+  line-height: 0.9;
+  margin: 35px 0;
+  letter-spacing: -5px;
+}
+
+.subtitle {
+  color: #aaa;
+  font-size: 22px;
+  font-style: italic;
+}
+
+.intro {
+  max-width: 460px;
+  margin-top: 65px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #b5b5b5;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding: 15px 22px;
+  border: 1px solid #666;
+  color: #e8e6e1;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.button:hover {
+  background: #e8e6e1;
+  color: #111;
+}
+
+.divider {
+  border-top: 1px solid #333;
+  margin: 70px 0 30px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 6%;
+  color: #666;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  nav {
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  main {
+    padding-top: 80px;
+  }
+
+  h1 {
+    letter-spacing: -3px;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">MEMORY BANK</div>
+
+  <nav>
+    <a href="#">ARCHIVE</a>
+    <a href="#">CONNECTIONS</a>
+    <a href="#">CENSUS</a>
+    <a href="#">ABOUT</a>
+  </nav>
+</header>
+
+<main>
+
+  <div class="label">A DIGITAL REPOSITORY OF HUMAN MEMORY</div>
+
+  <h1>MEMORY<br>BANK</h1>
+
+  <div class="subtitle">A collection of what remains.</div>
+
+  <div class="intro">
+    We remember things imperfectly.
+    Photographs fade. Places disappear.
+    Stories change. Some things are forgotten
+    before they can be recorded.
+
+    <br><br>
+
+    This is a place to leave something behind.
+  </div>
+
+  <div class="actions">
+    <a class="button" href="#">ENTER THE ARCHIVE</a>
+    <a class="button" href="#">DEPOSIT A MEMORY</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="label">
+    EVERYTHING DISAPPEARS. SOMETHING REMAINS.
+  </div>
+
+</main>
+
+<footer>
+  <div>MEMORY BANK © 2026</div>
+  <div>AN ARCHIVE OF WHAT REMAINS</div>
+</footer>
+
+</body>
+</html>
