@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deposit a Memory — Memory Bank</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #111;
+  color: #e8e6e1;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 6%;
+  border-bottom: 1px solid #333;
+}
+
+.logo {
+  color: #e8e6e1;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+nav a {
+  color: #888;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
+}
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 75px 7% 100px;
+}
+
+.label {
+  color: #777;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+}
+
+h1 {
+  font-size: clamp(50px, 9vw, 90px);
+  font-weight: normal;
+  letter-spacing: -3px;
+  margin: 30px 0;
+}
+
+.intro {
+  max-width: 570px;
+  color: #aaa;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 65px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+input, textarea, select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #444;
+  padding: 15px 5px;
+  color: #e8e6e1;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  outline: none;
+  border-radius: 0;
+}
+
+textarea {
+  border: 1px solid #444;
+  min-height: 150px;
+  resize: vertical;
+  padding: 15px;
+  line-height: 1.7;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #aaa;
+}
+
+select option {
+  background: #111;
+  color: #eee;
+}
+
+.hint {
+  color: #666;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+button {
+  width: fit-content;
+  background: transparent;
+  border: 1px solid #777;
+  color: #e8e6e1;
+  padding: 17px 25px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e8e6e1;
+  color: #111;
+}
+
+.notice {
+  display: none;
+  margin-top: 30px;
+  border-top: 1px solid #444;
+  padding-top: 20px;
+  color: #aaa;
+  line-height: 1.8;
+}
+
+footer {
+  border-top: 1px solid #333;
+  padding: 30px 6%;
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" href="index.html">MEMORY BANK</a>
+  <nav>
+    <a href="archive.html">ARCHIVE</a>
+    <a href="archive.html">CONNECTIONS</a>
+    <a href="archive.html">CENSUS</a>
+  </nav>
+</header>
+
+<main>
+
+  <div class="label">CONTRIBUTE TO THE ARCHIVE</div>
+
+  <h1>Deposit a Memory</h1>
+
+  <div class="intro">
+    You don't need to remember everything.
+    You don't need to tell the whole story.
+    A fragment is enough.
+
+    <br><br>
+
+    Leave something here that you don't want to disappear.
+  </div>
+
+  <form id="memoryForm">
+
+    <div class="field">
+      <label for="memoryType">What are you leaving behind?</label>
+      <select id="memoryType" required>
+        <option value="">Select a memory type</option>
+        <option>Written memory</option>
+        <option>Photograph</option>
+        <option>Sound or voice</option>
+        <option>Video</option>
+        <option>Object</option>
+        <option>Fragment / incomplete memory</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="memoryTitle">Give this memory a title (optional)</label>
+      <input type="text" id="memoryTitle"
+        placeholder="The house at the end of the road">
+    </div>
+
+    <div class="field">
+      <label for="memoryText">Your memory</label>
+      <textarea id="memoryText" required
+        placeholder="Write whatever remains..."></textarea>
+      <div class="hint">
+        It can be a story, a sentence, a feeling, a detail,
+        or something you can no longer fully remember.
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="memoryDate">When did it happen?</label>
+      <input type="text" id="memoryDate"
+        placeholder="Approximately 1998 / childhood / winter">
+    </div>
+
+    <div class="field">
+      <label for="memoryPlace">Where did it happen? (optional)</label>
+      <input type="text" id="memoryPlace"
+        placeholder="City, region, country">
+      <div class="hint">
+        Please do not include a street address or precise location.
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="preserve">Why do you want to preserve it?</label>
+      <select id="preserve">
+        <option value="">Choose if you wish</option>
+        <option>I don't want to forget</option>
+        <option>I want someone else to know</option>
+        <option>Someone is no longer here</option>
+        <option>The place no longer exists</option>
+        <option>I want to remember who I was</option>
+        <option>I don't know</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <button type="submit">LEAVE THIS MEMORY</button>
+
+  </form>
+
+  <div class="notice" id="notice">
+    <div class="label">MEMORY RECEIVED — PROTOTYPE</div>
+    <p>
+      Thank you for leaving something behind.
+    </p>
+    <p>
+      This prototype does not yet store or transmit your memory.
+      Your submission has not been added to the archive.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  <div>MEMORY BANK © 2026</div>
+  <div>A COLLECTION OF WHAT REMAINS</div>
+</footer>
+
+<script>
+document.getElementById("memoryForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  document.getElementById("notice").style.display = "block";
+
+  document.getElementById("notice").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+</script>
+
+</body>
+</html>
