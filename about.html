@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Bank — About</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #111111;
+  color: #e8e5df;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.7;
+}
+
+header {
+  padding: 25px 6%;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logo {
+  color: #e8e5df;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #999;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  transition: color 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: #e8e5df;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 90px 7% 100px;
+}
+
+.eyebrow {
+  color: #8d8d8d;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: clamp(45px, 8vw, 90px);
+  font-weight: 400;
+  letter-spacing: -4px;
+  line-height: 1.05;
+  margin-bottom: 35px;
+}
+
+.intro {
+  font-size: 22px;
+  color: #c9c6bf;
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 100px;
+}
+
+.section {
+  border-top: 1px solid #333;
+  padding: 50px 0;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 50px;
+}
+
+.section-label {
+  color: #888;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.section-content h2 {
+  font-size: 27px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.section-content p {
+  color: #aaa;
+  margin-bottom: 20px;
+  max-width: 650px;
+  font-size: 15px;
+}
+
+.statement {
+  margin: 100px 0;
+  padding: 50px 0;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.statement p {
+  font-size: clamp(28px, 5vw, 55px);
+  line-height: 1.3;
+  font-weight: 300;
+  max-width: 800px;
+  letter-spacing: -1px;
+}
+
+.statement span {
+  color: #777;
+}
+
+footer {
+  padding: 30px 6%;
+  border-top: 1px solid #333;
+  color: #777;
+  font-size: 11px;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+footer a {
+  color: #999;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  nav {
+    gap: 15px;
+  }
+
+  .container {
+    padding-top: 60px;
+  }
+
+  .intro {
+    font-size: 18px;
+    margin-bottom: 65px;
+  }
+
+  .section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 35px 0;
+  }
+
+  .statement {
+    margin: 65px 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" class="logo">MEMORY BANK</a>
+
+  <nav>
+    <a href="archive.html">ARCHIVE</a>
+    <a href="connections.html">CONNECTIONS</a>
+    <a href="census.html">CENSUS</a>
+    <a href="deposit.html">DEPOSIT</a>
+    <a href="about.html" class="active">ABOUT</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <div class="eyebrow">About the Project</div>
+
+  <h1>What remains<br>when memory fades?</h1>
+
+  <p class="intro">
+    Memory Bank is a digital archive of human memories.
+    It collects fragments of experiences, images, stories,
+    sounds, objects, and moments that people wish to preserve.
+    Not everything is complete. Not everything is certain.
+    Some things are remembered differently. Some things
+    are almost forgotten.
+  </p>
+
+  <section class="section">
+    <div class="section-label">01 / Purpose</div>
+
+    <div class="section-content">
+      <h2>A collection of what remains.</h2>
+
+      <p>
+        We remember places that no longer exist, people we have
+        lost, ordinary moments that somehow stayed with us,
+        and experiences that become less clear with time.
+      </p>
+
+      <p>
+        Memory Bank creates a space for these fragments.
+        A photograph, a sentence, a voice recording, a description
+        of an object, or a memory without a beginning or end
+        can become part of the archive.
+      </p>
+
+      <p>
+        The goal is not to preserve perfect stories.
+        It is to preserve traces of human experience.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">02 / Memory</div>
+
+    <div class="section-content">
+      <h2>Memory is not a recording.</h2>
+
+      <p>
+        We do not remember the past exactly as it happened.
+        Memories change. Details disappear. Images influence
+        what we believe we remember. Stories told by others
+        become part of our own recollections.
+      </p>
+
+      <p>
+        Two people can experience the same event and remember
+        entirely different things. Both memories may feel real.
+        Neither may contain the complete story.
+      </p>
+
+      <p>
+        Memory Bank does not require certainty. A memory can
+        be incomplete, contradictory, uncertain, or even
+        difficult to explain.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">03 / Images</div>
+
+    <div class="section-content">
+      <h2>Images preserve and distort.</h2>
+
+      <p>
+        Photographs are often treated as evidence of the past.
+        They can help us remember people, places, and events.
+        But an image also has limits. It captures one moment,
+        from one perspective, chosen by someone.
+      </p>
+
+      <p>
+        A photograph may preserve a face while the memory of
+        the person fades. It may document a place that no longer
+        exists. It may become the only surviving representation
+        of an experience.
+      </p>
+
+      <p>
+        What happens when we remember the photograph more clearly
+        than the event itself?
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">04 / Power</div>
+
+    <div class="section-content">
+      <h2>Every archive makes choices.</h2>
+
+      <p>
+        An archive is never completely neutral. Someone decides
+        what can be collected, how it is categorized, what can
+        be searched, what becomes visible, and what remains hidden.
+      </p>
+
+    <p>
+        Memory Bank asks who controls the preservation of
+        experience. Which memories become part of a collective
+        record? Which memories remain unseen? What happens when
+        a system organizes human experience into categories?
+    </p>
+
+    <p>
+        Even an attempt to preserve everything requires choices
+        about what preservation means.
+    </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">05 / Technology</div>
+
+    <div class="section-content">
+      <h2>Can technology preserve what disappears?</h2>
+
+      <p>
+        Digital technology allows memories to be stored, copied,
+        shared, searched, and connected across time and distance.
+        A fragment of someone's life may survive long after
+        the person, place, or event is gone.
+      </p>
+
+      <p>
+        But preserving a file is not the same as preserving
+        an experience. Data can survive while meaning changes.
+        Context can disappear. Platforms can vanish. Information
+        can become inaccessible.
+      </p>
+
+      <p>
+        Memory Bank explores both the possibility of digital
+        preservation and its limitations.
+    </p>
+    </div>
+  </section>
+
+  <div class="statement">
+    <p>
+      We don't remember things exactly as they happened.
+      <span>We remember what remains.</span>
+    </p>
+  </div>
+
+  <section class="section">
+    <div class="section-label">06 / Invitation</div>
+
+    <div class="section-content">
+      <h2>Leave something behind.</h2>
+
+      <p>
+        You do not need to tell your entire story.
+        You do not need to remember every detail.
+        You do not need to explain why something matters.
+      </p>
+
+      <p>
+        Leave a fragment. A place. A sound. A face.
+        Something ordinary. Something you are afraid of forgetting.
+      </p>
+
+      <p>
+        What remains is enough.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>A COLLECTION OF WHAT REMAINS.</div>
+  <div><a href="index.html">MEMORY BANK © 2026</a></div>
+</footer>
+
+</body>
+</html>
