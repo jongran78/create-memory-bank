@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Bank — Connection Test</title>
+
+  <style>
+    body {
+      background: #111;
+      color: #eee;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: normal;
+      letter-spacing: 3px;
+    }
+
+    #status {
+      margin-top: 30px;
+      padding: 20px;
+      border: 1px solid #444;
+      line-height: 1.6;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 20px;
+      background: transparent;
+      color: #eee;
+      border: 1px solid #888;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>MEMORY BANK</h1>
+    <p>Connection diagnostic</p>
+
+    <div id="status">
+      Testing connection...
+    </div>
+
+    <button onclick="location.reload()">Run test again</button>
+  </div>
+
+  <script type="module">
+    import { supabase } from './supabase-config.js';
+
+    const status = document.getElementById('status');
+
+    async function testConnection() {
+      try {
+        const { data, error } = await supabase
+          .from('public_archive')
+          .select('id')
+          .limit(1);
+
+        if (error) {
+          status.innerHTML =
+            'CONNECTION REACHED<br><br>' +
+            'Supabase responded, but the database test returned an error:<br><br>' +
+            error.message;
+
+          console.error(error);
+          return;
+        }
+
+        status.innerHTML =
+          'CONNECTION SUCCESSFUL<br><br>' +
+          'Memory Bank is communicating with Supabase.<br><br>' +
+          'Public archive query: successful';
+
+        console.log('Supabase connection successful:', data);
+
+      } catch (err) {
+        status.innerHTML =
+          'CONNECTION FAILED<br><br>' +
+          err.message;
+
+        console.error(err);
+      }
+    }
+
+    testConnection();
+  </script>
+
+</body>
+</html>
