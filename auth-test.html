@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Bank — Anonymous Authentication Test</title>
+
+  <style>
+    body {
+      background: #111;
+      color: #eee;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: normal;
+      letter-spacing: 3px;
+    }
+
+    #status {
+      margin-top: 30px;
+      padding: 20px;
+      border: 1px solid #444;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 20px;
+      background: transparent;
+      color: #eee;
+      border: 1px solid #888;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>MEMORY BANK</h1>
+    <p>Anonymous identity diagnostic</p>
+
+    <div id="status">
+      Testing anonymous authentication...
+    </div>
+
+    <button onclick="location.reload()">Run test again</button>
+  </div>
+
+  <script type="module">
+    import { supabase } from './supabase-config.js';
+
+    const status = document.getElementById('status');
+
+    async function testAnonymousAuth() {
+      try {
+        const { data, error } = await supabase.auth.signInAnonymously();
+
+        if (error) {
+          status.innerHTML =
+            'AUTHENTICATION FAILED<br><br>' +
+            error.message;
+
+          console.error(error);
+          return;
+        }
+
+        if (data.user) {
+          status.innerHTML =
+            'ANONYMOUS AUTHENTICATION SUCCESSFUL<br><br>' +
+            'Temporary visitor identity created.<br><br>' +
+            'User ID:<br>' +
+            data.user.id;
+
+          console.log('Anonymous user created:', data.user);
+        } else {
+          status.innerHTML =
+            'AUTHENTICATION RESPONSE RECEIVED<br><br>' +
+            'No user was returned.';
+        }
+
+      } catch (err) {
+        status.innerHTML =
+          'TEST FAILED<br><br>' +
+          err.message;
+
+        console.error(err);
+      }
+    }
+
+    testAnonymousAuth();
+  </script>
+
+</body>
+</html>
