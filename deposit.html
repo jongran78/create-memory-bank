@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,6 +150,11 @@ button:hover {
   color: #111;
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
 .notice {
   display: none;
   margin-top: 30px;
@@ -158,6 +162,16 @@ button:hover {
   padding-top: 20px;
   color: #aaa;
   line-height: 1.8;
+}
+
+.notice.success {
+  display: block;
+}
+
+.notice.error {
+  display: block;
+  border-color: #885555;
+  color: #d0a0a0;
 }
 
 footer {
@@ -194,13 +208,13 @@ footer {
 
 <header>
   <a class="logo" href="index.html">MEMORY BANK</a>
-<nav>
-  <a href="archive.html">ARCHIVE</a>
-  <a href="connections.html">CONNECTIONS</a>
-  <a href="census.html">CENSUS</a>
-  <a href="deposit.html">DEPOSIT</a>
-  <a href="about.html">ABOUT</a>
-</nav>
+  <nav>
+    <a href="archive.html">ARCHIVE</a>
+    <a href="connections.html">CONNECTIONS</a>
+    <a href="census.html">CENSUS</a>
+    <a href="deposit.html">DEPOSIT</a>
+    <a href="about.html">ABOUT</a>
+  </nav>
 </header>
 
 <main>
@@ -225,18 +239,19 @@ footer {
       <label for="memoryType">What are you leaving behind?</label>
       <select id="memoryType" required>
         <option value="">Select a memory type</option>
-        <option>Written memory</option>
-        <option>Photograph</option>
-        <option>Sound or voice</option>
-        <option>Video</option>
-        <option>Object</option>
-        <option>Fragment / incomplete memory</option>
+        <option value="written">Written memory</option>
+        <option value="photo">Photograph</option>
+        <option value="sound">Sound or voice</option>
+        <option value="video">Video</option>
+        <option value="object">Object</option>
+        <option value="fragment">Fragment / incomplete memory</option>
       </select>
     </div>
 
     <div class="field">
       <label for="memoryTitle">Give this memory a title (optional)</label>
       <input type="text" id="memoryTitle"
+        maxlength="200"
         placeholder="The house at the end of the road">
     </div>
 
@@ -253,12 +268,14 @@ footer {
     <div class="field">
       <label for="memoryDate">When did it happen?</label>
       <input type="text" id="memoryDate"
+        maxlength="100"
         placeholder="Approximately 1998 / childhood / winter">
     </div>
 
     <div class="field">
       <label for="memoryPlace">Where did it happen? (optional)</label>
       <input type="text" id="memoryPlace"
+        maxlength="150"
         placeholder="City, region, country">
       <div class="hint">
         Please do not include a street address or precise location.
@@ -269,30 +286,21 @@ footer {
       <label for="preserve">Why do you want to preserve it?</label>
       <select id="preserve">
         <option value="">Choose if you wish</option>
-        <option>I don't want to forget</option>
-        <option>I want someone else to know</option>
-        <option>Someone is no longer here</option>
-        <option>The place no longer exists</option>
-        <option>I want to remember who I was</option>
-        <option>I don't know</option>
-        <option>Other</option>
+        <option value="I don't want to forget">I don't want to forget</option>
+        <option value="I want someone else to know">I want someone else to know</option>
+        <option value="Someone is no longer here">Someone is no longer here</option>
+        <option value="The place no longer exists">The place no longer exists</option>
+        <option value="I want to remember who I was">I want to remember who I was</option>
+        <option value="I don't know">I don't know</option>
+        <option value="Other">Other</option>
       </select>
     </div>
 
-    <button type="submit">LEAVE THIS MEMORY</button>
+    <button id="submitButton" type="submit">LEAVE THIS MEMORY</button>
 
   </form>
 
-  <div class="notice" id="notice">
-    <div class="label">MEMORY RECEIVED — PROTOTYPE</div>
-    <p>
-      Thank you for leaving something behind.
-    </p>
-    <p>
-      This prototype does not yet store or transmit your memory.
-      Your submission has not been added to the archive.
-    </p>
-  </div>
+  <div class="notice" id="notice" aria-live="polite"></div>
 
 </main>
 
@@ -301,16 +309,133 @@ footer {
   <div>A COLLECTION OF WHAT REMAINS</div>
 </footer>
 
-<script>
-document.getElementById("memoryForm").addEventListener("submit", function(event) {
+<script type="module">
+import { supabase } from './supabase-config.js';
+
+const form = document.getElementById('memoryForm');
+const notice = document.getElementById('notice');
+const submitButton = document.getElementById('submitButton');
+
+form.addEventListener('submit', async function(event) {
   event.preventDefault();
 
-  document.getElementById("notice").style.display = "block";
+  notice.className = 'notice';
+  notice.innerHTML = '';
 
-  document.getElementById("notice").scrollIntoView({
-    behavior: "smooth"
-  });
+  submitButton.disabled = true;
+  submitButton.textContent = 'PRESERVING MEMORY...';
+
+  try {
+    // Step 1: Get the existing visitor session,
+    // or create an anonymous identity if needed.
+    let { data: sessionData, error: sessionError } =
+      await supabase.auth.getSession();
+
+    if (sessionError) throw sessionError;
+
+    let user = sessionData.session?.user;
+
+    if (!user) {
+      const { data: authData, error: authError } =
+        await supabase.auth.signInAnonymously();
+
+      if (authError) throw authError;
+
+      user = authData.user;
+    }
+
+    if (!user) {
+      throw new Error('Could not establish a visitor identity.');
+    }
+
+    // Step 2: Collect form information
+    const memoryType = document.getElementById('memoryType').value;
+    const title = document.getElementById('memoryTitle').value.trim();
+    const memoryText = document.getElementById('memoryText').value.trim();
+    const memoryDate = document.getElementById('memoryDate').value.trim();
+    const memoryPlace = document.getElementById('memoryPlace').value.trim();
+    const preserve = document.getElementById('preserve').value;
+
+    if (!memoryText) {
+      throw new Error('Please enter your memory before submitting.');
+    }
+
+    // Step 3: Save memory as private and pending
+    const { error: insertError } = await supabase
+      .from('memories')
+      .insert({
+        owner_id: user.id,
+        title: title || null,
+        memory_text: memoryText,
+        memory_type: memoryType,
+        approximate_date: memoryDate || null,
+        approximate_location: memoryPlace || null,
+        preservation_reason: preserve || null,
+        is_public: false,
+        moderation_status: 'pending'
+      });
+
+    if (insertError) throw insertError;
+
+    // Step 4: Confirm success to the visitor
+    notice.className = 'notice success';
+
+    notice.innerHTML = `
+      <div class="label">MEMORY RECEIVED</div>
+      <p>Thank you for leaving something behind.</p>
+      <p>
+        Your memory has been deposited into Memory Bank.
+        It is currently private and awaiting review.
+      </p>
+      <p>
+        It has not been made publicly visible.
+      </p>
+    `;
+
+    // Clear the form after successful submission
+    form.reset();
+
+    notice.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+
+  } catch (error) {
+    console.error('Memory submission error:', error);
+
+    notice.className = 'notice error';
+
+    notice.innerHTML = `
+      <div class="label">MEMORY NOT RECEIVED</div>
+      <p>
+        Something prevented your memory from being deposited.
+      </p>
+      <p>
+        ${escapeHTML(error.message || 'An unexpected error occurred.')}
+      </p>
+      <p>Please try again.</p>
+    `;
+
+    notice.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = 'LEAVE THIS MEMORY';
+  }
 });
+
+// Safely display error text without interpreting it as HTML
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 </script>
 
 </body>
