@@ -229,6 +229,61 @@ footer {
   <div>MEMORY BANK © 2026</div>
   <div>A COLLECTION OF WHAT REMAINS</div>
 </footer>
+<script type="module">
+import { supabase } from './supabase-config.js';
 
+const container = document.getElementById('memories-container');
+
+async function loadMemories() {
+  const { data, error } = await supabase
+    .from('public_archive')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    container.innerHTML = `
+      <p style="color:#999;">The archive could not be retrieved.</p>
+    `;
+    console.error('Archive error:', error);
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    container.innerHTML = `
+      <p style="color:#777; line-height:1.8;">
+        No memories have entered the public archive yet.
+        <br><br>
+        The archive is waiting.
+      </p>
+    `;
+    return;
+  }
+
+  container.innerHTML = '';
+
+  data.forEach((memory, index) => {
+    const article = document.createElement('article');
+    article.className = 'memory';
+
+    const number = document.createElement('div');
+    number.className = 'memory-number';
+    number.textContent = `MEMORY / ${String(index + 1).padStart(4, '0')}`;
+
+    const title = document.createElement('h2');
+    title.textContent = memory.title || 'Untitled Memory';
+
+    const text = document.createElement('p');
+    text.textContent = memory.memory_text || '';
+
+    article.appendChild(number);
+    article.appendChild(title);
+    article.appendChild(text);
+
+    container.appendChild(article);
+  });
+}
+
+loadMemories();
+</script>
 </body>
 </html>
